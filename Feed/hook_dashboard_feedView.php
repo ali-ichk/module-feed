@@ -22,19 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 $returnInt = null;
 
 //Only include module include if it is not already included (which it may be been on the index page)
-$included = false;
-$includes = get_included_files();
-foreach ($includes as $include) {
-    if ($include == $session->get('absolutePath').'/modules/Feed/moduleFunctions.php') {
-        $included = true;
-    }
-}
-if ($included == false) {
-    include './modules/Feed/moduleFunctions.php';
-}
+require_once $session->get('absolutePath').'/modules/Feed/moduleFunctions.php';
 
 if (isActionAccessible($guid, $connection2, '/modules/Feed/feed_view.php') == false) {
-    //Acess denied
+    // Access denied
     $returnInt .= "<div class='error'>";
     $returnInt .= 'You do not have access to this action.';
     $returnInt .= '</div>';
