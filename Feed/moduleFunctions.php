@@ -19,16 +19,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-use Gibbon\Domain\User\RoleGateway;
-
 function getFeed($connection2, $guid, $gibbonPersonID)
 {
-    global $session, $container;
+    global $session;
     
     $output = '';
     
-    $category = $container->get(RoleGateway::class)->getRoleCategory($session->get('gibbonRoleIDCurrent'));
-    
+    $category = $session->get('gibbonRoleIDCurrentCategory');
     $output .= '<p>';
         if ($category == "Staff") {
             $output .= __('Shown below is a list of the most recent 20 posts, drawn from your own website, and that of class and student websites for your form groups.') ;
